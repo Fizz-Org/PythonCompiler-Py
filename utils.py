@@ -5,13 +5,18 @@ def box(text, max_width=os.get_terminal_size().columns):
     # Get the terminal size.
     term_size = os.get_terminal_size()
     width = term_size.columns-2
-
+    
     # Handle max width.
     if width > max_width:
         width = max_width
+    
+    # Colors
+    red = "\x1b[31m"
+    cr = "\x1b[0m"
 
-    # Top row.
-    out = ["╭"+"─"*width+"╮"]
+    # Top rows.
+    out = [red+"Error:"]
+    out.append("╭"+"─"*width+"╮")
 
     # First split text in to sections by the newline identicator (\n),
     sectiones = text.split("\n")
@@ -20,7 +25,7 @@ def box(text, max_width=os.get_terminal_size().columns):
         # then split those into lines.
         for line in lines:
             padded = line.ljust(width)
-            out.append("│"+padded+"│")
+            out.append("│"+red+padded+red+"│")
     
     # Bottom row.
     out.append("╰"+"─"*width+"╯")

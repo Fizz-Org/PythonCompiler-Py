@@ -1,4 +1,5 @@
 # Imports
+from os import wait
 from utils import errbox
 import re
 
@@ -34,5 +35,5 @@ def tokenize(code):
                 pos = match.end()
                 break
         if not match:
-            errbox(f"Syntac Error at {line}|{col}: {code [0]}")
+            errbox(f"Syntax Error at {line}|{col}: {code[pos]!r}")
     return tokens
